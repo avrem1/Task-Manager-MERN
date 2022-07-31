@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { Box, Text, useToast } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import React from "react";

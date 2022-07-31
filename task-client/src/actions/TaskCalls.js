@@ -36,3 +36,28 @@ export const deleteTask = async (id, setUpdates) => {
             return error;
         });
 };
+
+export const getTask = async (id, setUpdates) => {
+    axios
+        .get("http://localhost:5000/api/v1/tasks/" + id)
+        .then(function (response) {
+            console.log(`Task ${id} successfully retrieved `, response);
+            setUpdates(response.data.task);
+        })
+        .catch(function (error) {
+            console.log("Error occured while retrieving a task : ", error);
+            return error;
+        });
+};
+
+export const updateTask = (id, data) => {
+    axios
+        .patch("http://localhost:5000/api/v1/tasks/" + id, data)
+        .then(function (response) {
+            console.log(`Task ${id} successfully updated `, response);
+        })
+        .catch(function (error) {
+            console.log("Error occured while updating a task : ", error);
+            return error;
+        });
+};

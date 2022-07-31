@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react";
 import { useState } from "react";
 import {
@@ -14,7 +12,6 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { createTask, getAllTasks, deleteTask } from "../actions/TaskCalls";
 import Card from "../common-components/card.js";
-import axios from "axios";
 
 function Home() {
     const toast = useToast();
@@ -54,7 +51,7 @@ function Home() {
             marginBottom={"30px"}
         >
             <Box
-                marginTop={"50px"}
+                marginTop={"60px"}
                 width={"40%"}
                 height="180px"
                 gap={2}
