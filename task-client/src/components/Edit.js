@@ -38,6 +38,7 @@ function Edit() {
 
     useEffect(() => {
         getTask(taskID, taskCallback);
+        // eslint-disable-next-line
     }, []);
 
     const saveChanges = () => {

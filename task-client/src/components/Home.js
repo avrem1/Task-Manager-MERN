@@ -12,6 +12,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { createTask, getAllTasks, deleteTask } from "../actions/TaskCalls";
 import Card from "../common-components/card.js";
+import ReactLoading from "react-loading";
 
 function Home() {
     const toast = useToast();
@@ -108,8 +109,7 @@ function Home() {
                 </VStack>
             </Box>
 
-            {allTasks &&
-                allTasks.length > 0 &&
+            {allTasks.length > 0 ? (
                 allTasks.map((item) => {
                     return (
                         <Card
@@ -120,7 +120,17 @@ function Home() {
                             taskID={item._id}
                         />
                     );
-                })}
+                })
+            ) : (
+                <Box marginTop={"80px"}>
+                    <ReactLoading
+                        height={"80px"}
+                        width={"80px"}
+                        type={"bars"}
+                        color="#1D84DF"
+                    />
+                </Box>
+            )}
         </VStack>
     );
 }
