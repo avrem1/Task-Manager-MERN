@@ -7,7 +7,9 @@ const connectDB = require("./db/connect");
 var cors = require("cors");
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/customError");
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 
 //middleware
 app.use(cors());
