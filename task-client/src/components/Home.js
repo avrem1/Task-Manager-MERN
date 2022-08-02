@@ -68,7 +68,7 @@ function Home() {
                         marginTop="5"
                         marginBottom="7"
                     >
-                        Task Manager
+                        Task Manager ⏳
                     </Heading>
                     <HStack
                         display="flex"
