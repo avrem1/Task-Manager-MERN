@@ -4,11 +4,14 @@ export const createTask = (data, setUpdates) => {
     axios
         .post("http://localhost:5000/api/v1/tasks", data)
         .then(function (response) {
-            console.log("Task successfully written", response);
-            setUpdates(response.data.task._id + "C");
+            if (response.status === 201) {
+                setUpdates(response.data.task._id + "C");
+            } else {
+                return Error("Unable to create a new task, please try later.");
+            }
         })
         .catch(function (error) {
-            console.log("Error during create task", error);
+            return error;
         });
 };
 
@@ -16,8 +19,11 @@ export const getAllTasks = (setData) => {
     axios
         .get("http://localhost:5000/api/v1/tasks")
         .then(function (response) {
-            console.log("Tasks successfully retrieved", response);
-            return setData(response.data.tasks.reverse());
+            if (response.status === 200) {
+                return setData(response.data.tasks.reverse());
+            } else {
+                return Error("Unable to retrieve tasks, please try later.");
+            }
         })
         .catch(function (error) {
             return error;
@@ -28,11 +34,13 @@ export const deleteTask = async (id, setUpdates) => {
     axios
         .delete("http://localhost:5000/api/v1/tasks/" + id)
         .then(function (response) {
-            console.log(`Task ${id} successfully deleted `, response);
-            setUpdates(response.data.task._id + "D");
+            if (response.status === 200) {
+                setUpdates(response.data.task._id + "D");
+            } else {
+                return Error("Unable to delete task, please try later.");
+            }
         })
         .catch(function (error) {
-            console.log("Error occured while deleting a task : ", error);
             return error;
         });
 };
@@ -42,10 +50,13 @@ export const getTask = async (id, setUpdates) => {
         .get("http://localhost:5000/api/v1/tasks/" + id)
         .then(function (response) {
             console.log(`Task ${id} successfully retrieved `, response);
-            setUpdates(response.data.task);
+            if (response.status === 200) {
+                setUpdates(response.data.task);
+            } else {
+                return Error("Unable to retrieve the task, please try later.");
+            }
         })
         .catch(function (error) {
-            console.log("Error occured while retrieving a task : ", error);
             return error;
         });
 };
@@ -54,10 +65,13 @@ export const updateTask = (id, data) => {
     axios
         .patch("http://localhost:5000/api/v1/tasks/" + id, data)
         .then(function (response) {
-            console.log(`Task ${id} successfully updated `, response);
+            if (response.status === 200) {
+                console.log(`Task ${id} successfully updates`);
+            } else {
+                return Error("Unable to update task, please try later.");
+            }
         })
         .catch(function (error) {
-            console.log("Error occured while updating a task : ", error);
             return error;
         });
 };
