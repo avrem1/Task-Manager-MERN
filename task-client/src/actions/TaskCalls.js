@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const createTask = (data, setUpdates) => {
     axios
-        .post("http://task-manager-avrem.herokuapp.com/api/v1/tasks", data)
+        .post("http://ec2-65-0-93-210.ap-south-1.compute.amazonaws.com:5000/v1/tasks", data)
         .then(function (response) {
             if (response.status === 201) {
                 setUpdates(response.data.task._id + "C");
@@ -17,7 +17,7 @@ export const createTask = (data, setUpdates) => {
 
 export const getAllTasks = (setData) => {
     axios
-        .get("http://task-manager-avrem.herokuapp.com/api/v1/tasks")
+        .get("http://ec2-65-0-93-210.ap-south-1.compute.amazonaws.com:5000/api/v1/tasks")
         .then(function (response) {
             if (response.status === 200) {
                 return setData(response.data.tasks.reverse());
@@ -32,7 +32,7 @@ export const getAllTasks = (setData) => {
 
 export const deleteTask = async (id, setUpdates) => {
     axios
-        .delete("http://task-manager-avrem.herokuapp.com/api/v1/tasks/" + id)
+        .delete("http://ec2-65-0-93-210.ap-south-1.compute.amazonaws.com:5000/api/v1/tasks/" + id)
         .then(function (response) {
             if (response.status === 200) {
                 setUpdates(response.data.task._id + "D");
@@ -47,7 +47,7 @@ export const deleteTask = async (id, setUpdates) => {
 
 export const getTask = async (id, setUpdates) => {
     axios
-        .get("http://task-manager-avrem.herokuapp.com/api/v1/tasks/" + id)
+        .get("http://ec2-65-0-93-210.ap-south-1.compute.amazonaws.com:5000/api/v1/tasks/" + id)
         .then(function (response) {
             console.log(`Task ${id} successfully retrieved `, response);
             if (response.status === 200) {
@@ -64,7 +64,7 @@ export const getTask = async (id, setUpdates) => {
 export const updateTask = (id, data) => {
     axios
         .patch(
-            "http://task-manager-avrem.herokuapp.com/api/v1/tasks/" + id,
+            "http://ec2-65-0-93-210.ap-south-1.compute.amazonaws.com:5000/api/v1/tasks/" + id,
             data
         )
         .then(function (response) {
