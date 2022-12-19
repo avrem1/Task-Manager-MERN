@@ -21,6 +21,9 @@ The focus of this personal project was to build an app that helps you manage & t
 - Configuring a reverse proxy like Nginx
 - Containerize the application and explore orchrestration tools like Kubernetes.
 
+[Click here to see the app](http://d1hxpvaz33v0ss.cloudfront.net/)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
